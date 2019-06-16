@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>操作 URL</title>
+	</head>
+	<body>
+		<script>
+			let url = window.location.search
+			
+			let searchParams = new URLSearchParams(url);
+			
+			//获取单个字段
+			console.log(searchParams.get('id'))
+			console.log(searchParams.get('token'))
+			console.log(searchParams.get('name'))
+			
+			//是否存在
+			searchParams.has('id') // true
+			searchParams.has('age') // false
+			
+			//添加字段
+			searchParams.append('age', 26);
+			searchParams.has('age'); // true
+			searchParams.get('age'); // 26
+			
+			//删除字段
+			searchParams.delete('age');
+			searchParams.has('age'); // false
+			
+			//设置子弹
+			searchParams.set('skill', '篮球 唱 跳 rap');
+			
+			
+			//转换为字符串
+			searchParams.toString();
+		</script>
+	</body>
+</html>

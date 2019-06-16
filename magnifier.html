@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>放大镜</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0
+			}
+
+			/* // 最外层，包裹所有元素 */
+			#demo {
+				display: block;
+				width: 719px;
+				height: 500px;
+				margin: 50px;
+				position: relative;
+				border: 1px solid #ccc;
+			}
+
+			/* // 小容器 */
+			#small-box {
+				position: relative;
+				z-index: 1;
+			}
+
+			/* // 放大镜 */
+			#float-box {
+				display: none;
+				width: 160px;
+				height: 120px;
+				position: absolute;
+				background: #ffffcc;
+				border: 1px solid #ccc;
+				filter: alpha(opacity=50);
+				opacity: 0.5;
+			}
+
+			/* // 为了兼容IE，把添加在小图片的特性全部移到mark */
+			#mark {
+				position: absolute;
+				display: block;
+				width: 719px;
+				height: 500px;
+				background-color: #fff;
+				filter: alpha(opacity=0);
+				opacity: 0;
+				z-index: 10;
+			}
+
+			/* // 大容器 */
+			#big-box {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 860px;
+				width: 400px;
+				height: 300px;
+				overflow: hidden;
+				border: 1px solid #ccc;
+				z-index: 1;
+				;
+			}
+
+			/* // 大图片 */
+			#big-box img {
+				position: absolute;
+				z-index: 5
+			}
+		</style>
+		<script>
+			//页面加载完毕后执行
+			window.onload = function() {
+				var objDemo = document.getElementById("demo");
+				var objSmallBox = document.getElementById("small-box");
+				var objMark = document.getElementById("mark");
+				var objFloatBox = document.getElementById("float-box");
+				var objBigBox = document.getElementById("big-box");
+				var objBigBoxImage = objBigBox.getElementsByTagName("img")[0];
+				// 鼠标移入时触发的事件
+				objMark.onmouseover = function() {
+					objFloatBox.style.display = "block"
+					objBigBox.style.display = "block"
+				}
+				// 鼠标离开时触发的事件
+				objMark.onmouseout = function() {
+					objFloatBox.style.display = "none"
+					objBigBox.style.display = "none"
+				}
+				// 鼠标在小图片上移动时触发的事件
+				objMark.onmousemove = function(ev) {
+					// 兼容浏览器
+					var _event = ev || window.event;
+					// 鼠标移动的 变化距离
+					var left = _event.clientX - objDemo.offsetLeft - objSmallBox.offsetLeft - objFloatBox.offsetWidth / 2;
+					var top = _event.clientY - objDemo.offsetTop - objSmallBox.offsetTop - objFloatBox.offsetHeight / 2;
+					// 把放大镜限制在小容器内
+					if (left < 0) {
+						left = 0;
+					} else if (left > (objMark.offsetWidth - objFloatBox.offsetWidth)) {
+						left = objMark.offsetWidth - objFloatBox.offsetWidth;
+					}
+					if (top < 0) {
+						top = 0;
+					} else if (top > (objMark.offsetHeight - objFloatBox.offsetHeight)) {
+						top = objMark.offsetHeight - objFloatBox.offsetHeight;
+					}
+					//放大镜跟随鼠标发生移动后的当前位置
+					objFloatBox.style.left = left + "px";
+					objFloatBox.style.top = top + "px";
+					//发生移动后，产生的 等比例 关系。
+					var percentX = left / (objMark.offsetWidth - objFloatBox.offsetWidth);
+					var percentY = top / (objMark.offsetHeight - objFloatBox.offsetHeight);
+					//利用等比例关系计算 大图片 反向 移动的距离
+					objBigBoxImage.style.left = -percentX * (objBigBoxImage.offsetWidth - objBigBox.offsetWidth) + "px";
+					objBigBoxImage.style.top = -percentY * (objBigBoxImage.offsetHeight - objBigBox.offsetHeight) + "px";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="demo">
+			<div id="small-box">
+				<div id="mark"></div>
+				<div id="float-box"></div>
+				<img src="https://p0.ssl.qhimgs1.com/bdr/719__/t01d1f1be5f6def4f40.jpg" /> // 这张是小图片。
+			</div>
+			<div id="big-box">
+				<img src="https://p0.ssl.qhimgs1.com/bdr/719__/t01d1f1be5f6def4f40.jpg" /> // 这张是大图片。
+			</div>
+		</div>
+	</body>
+</html>

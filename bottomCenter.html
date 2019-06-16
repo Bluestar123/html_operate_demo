@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+     <head>
+            <meta charset="UTF-8">
+            <meta name="Generator" content="EditPlus®">
+            <meta name="Author" content="">
+            <meta name="Keywords" content="">
+            <meta name="Description" content="">
+            <title>标签底中间下划线</title>
+            <style>
+				ul{
+					display: flex; flex-wrap: nowrap; list-style: none;
+				}
+				li{
+					padding: 10px 20px; position: relative;
+				}
+				li:before{
+					content: "";
+					position: absolute;
+					top: 100%;left: 0;right: 0;
+					width: 10px;
+					height:2px;
+					transition:width .3s linear;
+					background: #444;
+					margin:0 auto;
+				}
+				li:hover:before{
+					width: 100%;
+				}
+            </style>
+     </head>
+     <body>
+		
+		<ul>
+			<li>不可思议的css</li>
+			<li>导航栏</li>
+			<li class='li'>光标下划线跟随</li>
+			<li>我是你爹</li>
+			<li>还有谁！！！！！！</li>
+		</ul>
+     </body>
+</html>

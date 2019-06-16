@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>光标下划线跟随</title>
+	</head>
+	<style>
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			list-style: none;
+		}
+		li{
+			padding: 10px 20px;
+			cursor: pointer;
+			position: relative;
+		}
+		
+		li:before{
+			content: "";
+			position: absolute;
+			top: 0;
+			left:100%;
+			width: 0;
+			height: 100%;
+			border-bottom: 2px solid #444;
+			transition: all 0.3s linear;
+		}
+		
+		li:hover:before{
+			left: 0;
+			width: 100%;
+		}
+		li:hover ~ li:before{
+			background: pink;
+			left: 0;
+		}
+		
+	</style>
+	<body>
+		
+		<ul>
+			<li>不可思议的css</li>
+			<li>导航栏</li>
+			<li class='li'>光标下划线跟随</li>
+			<li>我是你爹</li>
+			<li>还有谁！！！！！！</li>
+		</ul>
+	</body>
+</html>

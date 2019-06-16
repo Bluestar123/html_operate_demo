@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>函数重载</title>
+	</head>
+	<body>
+		<script>
+			var people = {
+			  values: ["Dean Edwards", "Sam Stephenson", "Alex Russell", "Dean Tom"]
+			};
+			/*由addMethod函数的调用顺序可知，people.find最终绑定的是find2函数。然而，在绑定find2时，old为find1；同理，绑定find1时，old为find0。3个函数find0,find1与find2就这样通过闭包链接起来了。
+
+根据addMethod的逻辑，当f.length与arguments.length不匹配时，就会去调用old，直到匹配为止。*/
+			function addMethod(object,name,f){
+				var old = object[name];
+				//find0 的 old 是undefined
+				object[name]=function(){
+					console.log(f.length,arguments.length)
+					//f.length函数定义时的参数个数  传入的
+					//arguments.length为函数调用时的参数个数
+					if(f.length == arguments.length){
+						return f.apply(this,arguments)
+					}else if(typeof old ==='function'){
+						return old.apply(this,arguments)
+					}
+				}
+				
+			}
+			
+			
+			//不传入参数 返回所有
+			addMethod(people,"find",function(){
+				console.log(1)
+				return this.values;
+			})
+			
+			//传入一个参数
+			addMethod(people,"find",function(firstName){
+				console.log(2)
+				var ret = [];
+				for(let i =0;i<this.values.length;i++){
+					if(this.values[i].indexOf(firstName) === 0){
+						ret.push(this.values[i])
+					}
+				}
+				return ret;
+			})
+			
+			// 传入两个 参数
+			addMethod(people,"find",function(firstName,lastName){
+				console.log(3333333)
+				var ret = []
+				for(let i=0;i<this.values.length;i++){
+					if(this.values[i]===`${firstName} ${lastName}`){
+						ret.push(this.values[i])
+					}
+				}
+				return ret;
+			})
+			
+// 			console.log(people.find());
+// console.log(people.find("Dean")); 
+// console.log(people.find("Dean","Edwards")); 
+		</script>
+	</body>
+</html>

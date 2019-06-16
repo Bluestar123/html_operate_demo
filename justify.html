@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>文字两端对齐</title>
+	</head>
+	<style>
+		div{
+			margin: 10px 0;
+			width: 100px;
+			border: 1px solid blue;
+			text-align-last: justify;
+		}
+		
+		.test{
+			width: 200px;
+			background-color: pink;
+		}
+		.line{
+			text-overflow: ellipsis;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-line-clamp:3;
+			-webkit-box-orient:vertical
+		}
+	</style>
+	<body>
+	
+		<div>姓名</div>
+		<div>手机号码</div>
+		<div>账号</div>
+		<div>还有谁</div>
+		
+		<p class="test line">
+			阿萨德发撒地方撒飞洒的啊士大夫撒旦法师的的哈萨克of哈斯风凉话撒地方路安徽省覅路上烦死啦大姐夫sad返回后是 撒地方红烧豆腐哈斯卡的首付款姜思达开发就撒肯德基爱啥啥借款方has假大空撒地方爱上
+		</p>
+	</body>
+</html>

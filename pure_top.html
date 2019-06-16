@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css 弧形</title>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.pure_top{
+			width: 100%;
+			height: 200px;
+			position: relative;
+			z-index: -1;
+			overflow: hidden;
+		}
+		.pure_top:after{
+			content:"";
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: -1;
+			border-radius: 0 0 50% 50%;
+			background: #1496f1;
+		}
+	</style>
+	<body>
+		<div class='pure_top'></div>
+	</body>
+</html>
