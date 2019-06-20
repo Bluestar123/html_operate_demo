@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>border实现边框</title>
+	</head>
+	
+	<style>
+		.upload{
+			position: relative;
+			display: inline-block;
+			width: 76px;
+			height: 76px;
+			color: #ccc;
+			border: 2px dashed;
+			text-indent: -12em; /* 使其文字看不到 */
+			transition: color .25s ; /* hover事件 颜色渐变 */
+			overflow: hidden;
+			margin: 50px 100px;
+		}
+		/* 用before after 伪类 做+ 样式 */
+		.upload:before,.upload:after{
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+		}
+		.upload:hover{
+			color: #34538b;
+		}
+		.upload:before{
+			width: 20px;
+			border-top: 4px solid;
+			margin: -2px 0 0 -10px;
+		}
+		.upload:after{
+			height: 20px;
+			border-left: 4px solid;
+			margin: -10px 0 0 -2px;
+		}
+	</style>
+	
+	<body>
+		<a href="javascript:;" class="upload" title="继续上传">添加图片</a>
+
+	</body>
+</html>

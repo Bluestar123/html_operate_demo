@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自适应的弹框</title>
+	</head>
+	
+	<style>
+		.c-pupup{
+			position: fixed;
+			top:0;
+			bottom: 0;
+			left:0;
+			right: 0;
+			background: rgba(0,0,0,.5);
+			text-align: center;
+			white-space: nowrap;
+			z-index: 99;
+		}
+		.c-pupup:after{
+			content: "";
+			display: inline-block;
+			height: 100%;
+			vertical-align: middle;
+		}
+		.dialog{
+			background-color: #fff;
+			display: inline-block;
+			vertical-align: middle;
+			border-radius: 6px;
+			text-align: left;
+			white-space: normal;
+			width: 400px;
+			height: 250px;
+		}
+	</style>
+	
+	<body>
+		<div class="c-pupup">
+			<div class="dialog">
+				<div class="content">
+					你好啊
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

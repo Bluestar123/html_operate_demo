@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>吸顶</title>
+	</head>
+	
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.top,.bottom{
+			height: 1000px;
+			background: pink;
+			width: 100%;
+		}
+		.bottom{
+			background: #CCCCCC;
+		}
+		.sticky{
+			position: -webkit-sticky;
+			position: sticky;
+			top: 0;
+			width: 100%;
+			height: 50px;
+			background: red;
+		}
+	</style>
+	<body>
+		<div class="top"></div>
+		<div class="sticky"></div>
+		<div class="bottom"></div>
+		
+		<script>
+			
+			// window.addEventListener('scroll',()=>{
+			// 	var sticky = document.getElementsByClassName('sticky')[0]
+			// 	var offsetTop = sticky.offsetTop
+			// 	
+			// 	var scrollTopIE = document.body.scrollTop //IE
+			// 	var scrollTop = document.documentElement.scrollTop
+			// 	console.log(scrollTop,offsetTop)
+			// 	
+			// 	
+			// 	if(scrollTop>offsetTop){
+			// 		sticky.style.position='fixed'
+			// 		sticky.style.top='0'
+			// 		sticky.style.left='0'
+			// 	}else{
+			// 		sticky.style.position='static'
+			// 	}
+			// })
+		</script>
+	</body>
+</html>

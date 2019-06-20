@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>不规则投影小尾巴</title>
+	</head>
+	
+	<style>
+		div{
+			position: relative;
+			display: inline-flex;
+			flex-direction: column;
+			justify-content: center;
+			vertical-align: bottom;
+			box-sizing: border-box;
+			width: 8em;
+			padding: .5em;
+			height: 5em;
+			margin: .6em;
+			background: #0cc071;
+			color: #fff;
+			/* 阴影 */
+			-webkit-filter: drop-shadow(.2em .2em .2em rgba(0,0,0,.5));
+			filter: drop-shadow(.2em .2em .2em rgba(0,0,0,.5));
+		}
+		.speech {
+			border-radius: .3em;
+		}
+		.speech:before{
+			content: '';
+			position: absolute;
+			top: 1em;
+			right: -.7em;
+			width: 0;
+			height: 0;
+			border: 1em solid transparent;
+			border-left-color: #0cc071;
+			border-right-width: 0;
+		}
+	</style>
+	
+	<body>
+		<div class="speech">不规则投影</div>
+	</body>
+</html>
