@@ -58,6 +58,9 @@
 			color: #666;
 			text-decoration: none;
 		}
+		#sub a:hover{
+			color:red;
+		}
 		.sub_content dd a {
 			border-left: 1px solid #e0e0e0;
 			padding: 0 10px;
@@ -350,7 +353,7 @@
 					
 					
 				</div>
-				<div id='c' class='sub_content none'>
+				<div id='g' class='sub_content none'>
 					<dl>
 						<dt>
 							<a href="#">电视<i>&gt;</i></a>
@@ -394,11 +397,12 @@
 		
 		
 		<script type="text/javascript">
+			
 			$(document).ready(function(){
 				var sub = $('#sub')
 				
-				var activeRow 
-				var activeMenu
+				var activeRow  //li
+				var activeMenu  //li对应的sub
 				var timer
 				var mouseInSub = false
 				
@@ -408,7 +412,7 @@
 					mouseInSub =false
 				})
 				
-				// 除去 延迟的
+				// 除去 延迟的  两个鼠标位置点
 				var mouseTrack = []
 				
 				var moveHandler = function(e){
@@ -426,6 +430,7 @@
 				$('#test').on('mouseenter',function(){
 					sub.removeClass('none')
 					$(document).bind('mousemove',moveHandler)
+					
 				}).on('mouseleave',function(){
 					sub.addClass('none')
 					
@@ -457,10 +462,10 @@
 					//当前鼠标坐标
 					var currMousePos = mouseTrack[mouseTrack.length - 1]
 					
-					var leftCorner = mouseTrack[mouseTrack.length-2]
+					var leftCorner = mouseTrack[mouseTrack.length-2]  //三角形左侧点
 					
 					var delay = needDelay(sub,leftCorner,currMousePos)
-					
+					//进入sub 需要延迟 li切换不需要
 					if(delay){
 						console.log(111111111111)
 						timer = setTimeout(()=>{
@@ -508,7 +513,7 @@
 			function vector(a,b){
 				//鼠标点 和 三角形顶点  做差
 				return {
-					x:b.x - a.x,
+					x:b.x - a.x, //三角点 减当前点
 					y:b.y -a.y
 				}
 			}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			height: 100%;
+		}
+		.container{
+			height: 100%;
+			display: -ms-grid;
+			display: -webkit-grid;
+			display: grid;
+			/* grid-template-columns:minmax(300px,1000px); */
+			grid-template-columns:repeat(4, 1fr);
+			/* grid-template-columns:100px fit-content(200px) fit-content(300px);可以控制宽度是多少 */
+			grid-template-rows:1fr;
+			gap:20px;
+			/* justify-items:center; /* 内部每一项的对齐方式 */ 
+			/* align-items: center; */
+			
+			/* justify-content: center  spance-evenly//左右gap相同; 当内部的item总宽度小于 grid box使用  改变 gap左右键宽度*/
+			
+			/* place-items:竖 横; */
+			grid-template-areas:
+				"header header header header"
+				"main main . main1"
+				"footer footer footer footer";
+		}
+		/* 网格容器和网格项 */
+		.container div{
+			background: pink;
+			/* width: 100%;
+			height: 100%; */
+			
+			justify-self:center;
+			align-self:center;
+		}
+		.container div:first-of-type{
+			/* grid-column-start:1;
+			grid-column-end:4;
+			grid-row-start:2;
+			grid-row-end:5; */
+			/* z-index:5; */
+			/* grid-column:2 / span 2; /* 横着跨两个 */
+			/* grid-row:2 / span 2; /* 竖着跨两格 */ 
+			/* grid-area: 1 / 2 / span 3 /span 2; /* column-start / row-start / column-end / row-end  */ 
+			grid-area:header;
+			/* 跟areas 的对应就好 */
+		}
+		img{
+			width: 100px;
+			float: left;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+				saoidfhh laskdnf kashfoaisk nlk穷国兼容我国家里看风景aslkjoijgaskjoia 爱哦放假熬时间了空间啊奇偶我驾驶飞机爱就爱按个啊估价师加的贾师傅金融服务金额偶然间婆家人加挖破较为欧派及文案融通巨额肉我嘎收到了姑娘地方离不开是那地方了快过年了卡啊就哦啊骄傲文件 爱我没骄傲我较高的发生法律开关机阿里看见我IE就怕就留给你的理工科男安稳奥我记录开始的发送到了空间发零售价阿伟
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+			<div>
+				<img src="http://image3.xyzs.com/upload/6c/9f/115419/20130901/137796636793747_0.jpg" alt="">
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		p {
+		            width: 400px;
+		            height: 100px;
+		            margin: 100px auto;
+		            border: 1px solid #ccc;
+		            position: relative;
+		            line-height: 20px;
+		            overflow: hidden;
+		        }
+		
+		        p::after {
+		            content: "...";
+		            position: absolute;
+		            bottom: 0;
+		            right: 0;
+		            padding-left: 10px;
+		            background: -webkit-linear-gradient(left, transparent, #fff 55%);
+		            background: linear-gradient(to right, transparent, #fff 55%);
+		        }
+		}
+	</style>
+	<body>
+		
+		<p>-webkit-line-clamp用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性：
+display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。
+-webkit-box-orient 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。</p>
+		
+		
+		<h3>BFC</h3>
+		<p>概念：块级格式化上下文</p>
+		<dl>
+			<dt>原理</dt>
+			<dd>在BFC这个元素垂直方向的边距会发生重叠</dd>
+			<dd>BFC的区域不会与浮动元素的box重叠</dd>
+			<dd>BFC在页面上是一个独立的容器，其里外的元素不会互相影响</dd>
+			<dd>计算BFC高度时，浮动元素也会参与计算</dd>
+		</dl>
+		
+		<dl>
+			<dt>float值不为none</dt>
+			<dd>position值不为static和absolute</dd>
+			<dd>BFC的区域不会与浮动元素的box重叠</dd>
+			<dd>display属性为table/table-cell等与table相关的值</dd>
+			<dd>overflow值不为visible</dd>
+		</dl>
+		<script>
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>发布订阅</title>
+	</head>
+	<body>
+		<script>
+			function Observer(){
+				this.obj = {}
+			}
+			
+			Observer.prototype.on=function(key,fn){
+				if(!this.obj[key]) {
+					this.obj[key] = []
+				}
+				return this.obj[key].push(fn)
+			}
+			
+			Observer.prototype.emit=function(key){
+				if(this.obj[key] && this.obj[key].length>0){
+					let fns = this.obj[key]
+					for(let i=0;i<fns.length;i++){
+						Array.prototype.shift.call(arguments)//改变key
+						
+						fns[i].apply(this,arguments)
+					}
+				}
+			}
+			
+			Observer.prototype.remove=function(key,fn){
+				let fns = this.obj[key]
+				if(!fns)return
+				
+				if(!fn){
+					fns = []
+				}else {
+					fns.map((item,index)=>{
+						if(item === fn){
+							fns.splice(index,1)
+						}
+					})
+				}
+			}
+			
+			let obj = new Observer()
+			
+			obj.on('test',function(){
+				console.log('on on on1' + `--- ${Array.from(arguments)}`)
+			})
+			obj.on('test',fn1 = function (){
+				console.log('11111111')
+			})
+			obj.emit('test', 4,55)
+			
+			obj.remove('test',fn1)
+			obj.on('test',()=>{
+				console.log('on on on2')
+			})
+			obj.on('test',fn1 = function (){
+				console.log('11111111')
+			})
+			obj.emit('test')
+		</script>
+	</body>
+</html>

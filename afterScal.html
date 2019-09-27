@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		html,body{
+			-webkit-user-select: all;
+		}
+		.box,.hidebox{
+			width: 100px;
+			height: 50px;
+			background: lightblue;
+			cursor: pointer;
+			position: relative;
+		}
+		.hidebox{
+			background: pink;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 0;
+			overflow: hidden;
+			transform: translateX(200%);
+		}
+		.box:hover .hidebox{
+			width: 100px;
+			transform: translateX(100%);
+			transition: transform 0.5s ease;
+		}
+		.box:after{
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			transform: scale(0);
+			background: red;
+			z-index: 1;
+		}
+		.box:hover:after{
+			animation: aa 0.25s ease-in-out;
+			transform: scale(1);
+		}
+		@-webkit-keyframes aa{
+			0%{transform: scale(0);}
+			90%{transform: scale(1.1);}
+			100%{transform: scale(1);}
+		}
+		.box:hover span{
+			color: #fff;
+		}
+		span {
+			position: absolute;
+			left: 50%;
+			top:50%;
+			transform: translate(-50%,-50%);
+			z-index:10;
+		}
+		.trangle{
+			height: 0;
+			width: 0;
+			border:10px solid transparent;
+			filter: drop-shadow(.2em .2em .2em rgba(0,0,0,.5));
+			border-left-color:red;
+		}
+		.bottomBorder-box{
+			width: 300px;
+			margin: 20px auto;
+			text-align: center;
+			position: relative;
+		}
+		.bottomBorder{
+			border: none;
+			outline: none;
+			background: #ccc;
+			width: 100%;
+		}
+		.bottomBorder-box:before{
+			content: '';
+			position: absolute;
+			z-index:10;
+			height: 3px;
+			top: 100%;
+			margin:0 auto;
+			background: red;
+		}
+		.bottomBorder-box:focus:before{
+			background: pink;
+			left: 0;
+			width: 100%;
+		}
+	</style>
+	<body>
+<video src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls=""></video>
+		<div class='bottomBorder-box'>
+			<input type="text" class='bottomBorder'>
+		</div>
+		<input type="text"  placeholder="aa">
+		<input type="password" placeholder="bb">
+		<article class="box">
+			<span class='text'>你好</span>
+			<div class='hidebox'>
+				6666
+			</div>
+		</article>
+		<p>adsfasdfasdfasdfasdfasdfasdfd</p>
+		<div class='trangle'></div>
+		<div>
+			<img src="images/0.jpg" >
+		</div>
+		<div>
+			<video width="800" height="" controls>
+				<source src="js/ocean.mp4" type="video/mp4"></source>
+				
+			</video>
+		</div>
+	</body>
+</html>

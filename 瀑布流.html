@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js瀑布流 决定定位</title>
+	</head>
+	
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#main{
+			position: relative;
+		}
+		
+		.box{
+			float: left;
+			padding: 15px 0 0 15px;
+		}
+		.pic{
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0 0 5px #ccc;
+		}
+		.pic img{width: 230px; height: auto;}
+	</style>
+	<script type="text/javascript">
+		function checkScrollSlide(){
+			var oParent = document.getElementById('main')
+			var oBoxs = getByClass(oParent, 'box')
+			var lastBoxH = oBoxs[oBoxs.length-1].offsetTop+Math.floor(oBoxs[oBoxs.length-1].offsetHeight/2)
+			var scrollTop = document.documentElement.scrollTop ||document.body.scrollTop
+			var clientHeight = document.documentElement.clientHeight || document.body.clientHeight
+			
+			if(lastBoxH<scrollTop+clientHeight){
+				return true
+			}else{
+				return false
+			}
+		}
+		window.onload=function(){
+			waterfall('main','box');
+			var dataInt = {"data":[{"src":"images/1.jpg"},{"src":"images/1.jpg"},{"src":"images/1.jpg"},{"src":"images/1.jpg"},{"src":"images/1.jpg"},{"src":"images/1.jpg"}]}
+			window.onscroll=function(){
+				if(checkScrollSlide()){
+					var main = document.getElementById('main')
+					//将数据块 渲染到页面中
+					for(let i=0;i<dataInt.data.length;i++){
+						
+						var oBox = document.createElement('div')
+						var oPic = document.createElement('div')
+						var oImg = document.createElement('img')
+						oBox.className = 'box'
+						oPic.className='pic'
+						oImg.src=dataInt.data[i].src
+						main.appendChild(oBox)
+						oBox.appendChild(oPic)
+						oPic.appendChild(oImg)
+					}
+					waterfall('main','box');
+				}
+			}
+		}
+		
+		function waterfall(parent, box){
+			//取出 所有class box
+			var oParent = document.getElementById(parent)
+			var oBoxs = getByClass(oParent,box)
+			//计算 整个页面的列数
+			var oBoxW = oBoxs[0].offsetWidth;
+			var cols = Math.floor(document.documentElement.clientWidth/oBoxW)
+			
+			//设置 main 的宽度 居中
+			oParent.style.cssText='width:'+oBoxW*cols+'px;margin:0 auto;'
+			
+			// 高度数组
+			var hArr = []  //存每一列高度的数组
+			for(let i=0;i<oBoxs.length;i++){
+				if(i<cols){
+					hArr.push(oBoxs[i].offsetHeight)
+				}else{
+					var minH =Math.min.apply(null,hArr)
+					var index = getMinhIndex(hArr, minH)
+					oBoxs[i].style.position='absolute'
+					oBoxs[i].style.top=minH+'px'
+					// oBoxs[i].style.left=index*oBoxW+'px'
+					oBoxs[i].style.left=oBoxs[index].offsetLeft+'px'
+					// 改变原来的数组, 高度改变
+					hArr[index]+=oBoxs[i].offsetHeight
+				}
+			}
+		}
+		function getMinhIndex(arr,value){
+			return arr.indexOf(value)
+		}
+		
+		//根据class 获取元素
+		function getByClass(parent, className){
+			var boxArr = new Array(),//用来存储获取到的所有class 的元素
+				oElements = parent.getElementsByTagName('*')
+			
+			for(var i =0;i<oElements.length;i++){
+				if(oElements[i].className==className){
+					boxArr.push(oElements[i])
+				}
+			}
+			return boxArr
+		}
+	</script>
+	<body>
+		
+		<div id="main">
+			<div class="box">
+				<div class="pic">
+					<img src="images/0.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/1.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/2.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/3.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/4.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/5.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/6.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/7.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/8.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/9.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/10.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/11.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/12.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/13.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/14.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/15.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/16.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/17.jpg" alt="">
+				</div>
+			</div>
+			<div class="box">
+				<div class="pic">
+					<img src="images/18.jpg" alt="">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

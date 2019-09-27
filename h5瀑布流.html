@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#box{
+			margin: 0 auto;
+			width: 700px;
+		}
+		ul{
+			width: 200px;
+			float: left;
+			margin: 0 auto;
+			margin-right: 10px;
+		}
+		img{
+			width: 200px;
+			padding-top: 10px;
+		}
+	</style>
+	<script type="text/javascript">
+		function ajax(url,fn){
+			var xhr = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP")
+			 xhr.open('GET',url, true);
+			 xhr.send()
+			 xhr.onreadystatechange=function(){
+				 if(xhr.readyState===4 && xhr.status==200){
+					 fn && fn(xhr.responseText)
+				 }
+			 }
+		}
+		window.onload=function(){
+			//获取元素
+			var oBox = document.getElementById('box')
+			var oUl = document.getElementsByTagName('ul')
+			//文档的可视高度
+			var vH = document.documentElement.clientHeight
+			
+			//获得最小高度 列,在最小高的位置渲染图片
+			function min_height(oUl){
+				var ht = oUl[0].offsetHeight;
+				var index = 0
+				for(let i =0;i<oUl.length;i++){
+					if(oUl[i].offsetHeight < ht){
+						ht = oUl[i].offsetHeight
+						index = i
+					}
+				}
+				
+				return index
+			}
+			loadImg()
+			//加载图片
+			function loadImg(){
+				ajax('images/img.json',res=>{
+					res = (new Function("return" + res))() // 字符串>数组
+					for(let i=0;i<res.length;i++){
+						var oLi = document.createElement('li')
+						var oImg = document.createElement('img')
+						oImg.src = res[i]
+						oLi.appendChild(oImg)
+						// 那一列 最短
+						oUl[min_height(oUl)].appendChild(oLi)
+					}
+				})
+			}
+			
+			document.onscroll = function(){
+				//滚动高度
+				var sH = document.documentElement.scrollTop || document.body.scrollTop
+				if(sH + vH >= document.documentElement.scrollHeight*0.9){ // 页面实际高度
+					loadImg()
+				}
+			}
+		}
+	</script>
+	<body>
+		<div id="box">
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+		</div>
+	</body>
+</html>
